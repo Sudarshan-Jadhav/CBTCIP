@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mastermind Game</title>
+</head>
+<body>
+    <h1>Mastermind Game</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="guess" maxlength="4" required>
+        <button type="submit">Guess</button>
+    </form>
+
+    <h2>Attempts</h2>
+    <ul>
+        {% for attempt in attempts %}
+            <li>
+                Guess: {{ attempt.guess }} - Correct: {{ attempt.correct }} - Wrong Position: {{ attempt.wrong_position }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'reset_game' %}">Reset Game</a>
+</body>
+</html>
